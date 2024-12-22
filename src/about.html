@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О приложении</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="images.png">
+</head>
+<body>
+    <header>
+        <div class="logo">Логотип</div>
+        <!-- <button id="theme-toggle">Переключить тему</button> -->
+        <nav>
+            <ul class="nav">
+                <li><a href="glav.html">Главная</a></li>
+                <li><a href="proj.html">Проекты</a></li>
+                <li><a href="index.html">Список задач</a></li>
+                <li class="active">О приложении</li>
+            </ul>
+            <div class="burger-menu" onclick="toggleMenu()" id="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </nav>
+    </header>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="glav.html">Главная</a></li>
+                <li><a href="proj.html">Проекты</a></li>
+                <li><a href="index.html">Список задач</a></li>
+                <li class="active">О приложении</li>
+            </ul>
+    </div>
+        <h1>О приложении</h1>
+        <p style="text-align: center; max-width: 70%; margin: auto;">Это приложение помогает вам управлять своими задачами, организовывая их в удобном интерфейсе. Вы можете добавлять, редактировать и удалять задачи, отслеживать их статус и многое другое.</p>
+    
+    <h2 style="text-align: center; max-width: 70%; margin: auto;">Функции приложения</h2>
+    <ul style="text-align: center; max-width: 70%; margin: auto;">
+        <li style="text-align: center; max-width: 70%; margin: auto;">Добавление новых задач</li>
+        <li style="text-align: center; max-width: 70%; margin: auto;">Отметка задач как выполненные</li>
+        <li style="text-align: center; max-width: 70%; margin: auto;">Удаление задач</li>
+        <li style="text-align: center; max-width: 70%; margin: auto;">Отображение задач в разных состояниях</li>
+
+    <script src="./js/theme.js"></script>
+    <script src="./js/tasks.js"></script>
+    <script src="./js/dialog.js"></script>
+    <script src="./js/menu.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="bundle.js"></script>
+</body>
+</html>

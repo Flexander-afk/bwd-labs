@@ -1,42 +1,51 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // Импортируем плагин
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js', // Укажите ваш основной файл
-  output: {
-    filename: 'bundle.js', // Имя выходного файла
-    path: path.resolve(__dirname, 'dist'), // Укажите папку для сборки
-    clean: true, // Очищает папку dist перед каждой сборкой
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/, // Указывает на файлы с расширением .css
-        use: ['style-loader', 'css-loader'], // Используем style-loader и css-loader
-      },
-      {
-        test: /\.js$/, // Обработка JavaScript-файлов
-        exclude: /node_modules/, // Исключаем папку node_modules
-        use: {
-          loader: 'babel-loader', // Используем babel-loader для транспиляции
-          options: {
-            presets: ['@babel/preset-env'], // Используем пресет для ES6
-          },
-        },
-      },
+    mode: 'development', // Режим разработки
+    entry: {
+        index: './src/index.js', // Точка входа для основной страницы
+        // Вы можете добавить другие точки входа, если у вас есть дополнительные страницы
+    },
+    output: {
+        filename: 'bundle.js', // Имя выходного файла сборки
+        path: path.resolve(__dirname, 'dist'), // Путь для выходного файла сборки
+        clean: true, // Очистка папки dist перед сборкой
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/, // Обработка JS файлов
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader', // Транспиляция кода
+                },
+            },
+            {
+                test: /\.css$/, // Обработка CSS файлов
+                use: ['style-loader', 'css-loader'], // Загрузчики для стилей
+            },
+        ],
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html', // Шаблон HTML для главной страницы
+            inject: true,
+            filename: 'index.html',
+            scriptLoading: 'blocking', // Подключение скриптов в конце body
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/glav.html', // Шаблон HTML для второй страницы
+            inject: true,
+            filename: 'glav.html',
+            scriptLoading: 'blocking', // Подключение скриптов в конце body
+        }),
     ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html', // Укажите путь к вашему шаблону HTML
-      filename: 'index.html', // Имя выходного файла
-    }),
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'), // Укажите папку для сервера
-    compress: true, // Включаем сжатие
-    port: 9000, // Порт для dev-сервера
-  },
-  mode: 'development', // Укажите режим разработки
+    devtool: 'source-map', // Генерация source maps
+    devServer: {
+        static: path.resolve(__dirname, 'dist'), // Папка для статических файлов
+        port: 3000, // Порт сервера
+        open: true, // Автооткрытие браузера
+    },
 };
 
