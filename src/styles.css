@@ -1,0 +1,577 @@
+body {
+    font-family: Comic Sans MS, serif;
+    background-color: #a6deff;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --background-color: #ffffff; /* Светлая тема фона */
+    --text-color: #000000; /* Цвет текста */
+    --button-background: white; /* Цвет кнопок */
+    --button-text-color: blue; /* Цвет текста кнопок */
+    --table-header-bg: #e5c9f2; /* Цвет фона заголовков таблицы */
+    --even-row-bg: #8689e3; /* Цвет фона для четных строк */
+    --odd-row-bg: #bf86e3; /* Цвет фона для нечетных строк */
+    --delete-button-bg: #f44336; /* Красный цвет для удаления */
+    --delete-button-hover-bg: #d32f2f; /* Темный оттенок для кнопки удалить */
+    --card-border: white; /* Цвет рамки карточки */
+    --card-bg: #ffffff; /* Цвет фона карточки */
+}
+
+/* Темная тема */
+.dark-mode {
+    --background-color: white gray; /* Темная тема фона */
+    --text-color: #ffffff; /* Цвет текста */
+    --button-background: #f2dfd5; /* Цвет кнопок для темной темы */
+    --button-text-color: #453229; /* Цвет текста кнопок для темной темы */
+    --table-header-bg: white; /* Цвет фона заголовков таблицы для темной темы */
+    --even-row-bg: #1e1e1e; /* Цвет фона для четных строк для темной темы */
+    --odd-row-bg: #272727; /* Цвет фона для нечетных строк для темной темы */
+    --delete-button-bg: #f44336; /* Красный цвет для удаления */
+    --delete-button-hover-bg: #d32f2f; /* Темный оттенок для кнопки удалить */
+    --card-border: #444; /* Цвет рамки карточки для темной темы */
+    --card-bg: #1e1e1e; /* Цвет фона карточки для темной темы */
+}
+
+body.dark-mode {
+    background-color: gray;
+}
+
+/* Стили для заголовка */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #8c62fc; /* Использование переменной для цвета текста */
+    margin-top: 15%;
+}
+
+.dark-mode h1 {
+    color: #f2dfd5; /* Цвет текста становится белым */
+}
+
+/* Стили для формы добавления задачи */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #7a3e22; /* Цвет рамки */
+    border-radius: 5px;
+    width: 300px; /* Ширина поля ввода */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: var(--button-background); /* Цвет фона */
+    color: var(--button-text-color); /* Цвет текста */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Стили кнопки "Добавить" при наведении */
+button:hover {
+    background-color: purple; /* Темный оттенок при наведении */
+}
+
+/* Стили для карточек задач */
+.card {
+    display: flex; /* Используем flexbox для горизонтального расположения */
+    justify-content: space-between; /* Распределяем пространство между элементами */
+    align-items: center; /* Центрируем элементы по вертикали */
+    border: 1px solid var(--card-border); /* Цвет рамки карточки */
+    border-radius: 5px;
+    padding: 0px; /* Уменьшил отступы для лучшей компоновки */
+    margin: 0px 0; /* Уменьшил расстояние между карточками */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Эффект тени */
+    transition: box-shadow 0.3s;
+}
+
+/* Цвета для разных статусов задач */
+.card.pending {
+    background-color: #9c27b0; /* Фиолетовый цвет для ожидающих задач */
+}
+
+.card.in-progress {
+    background-color: #62fcf2; /* Желтый цвет для задач в процессе */
+}
+
+.card.completed {
+    background-color: #62fc72; /* Зеленый цвет для выполненных задач */
+}
+
+.card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Увеличение тени при наведении */
+}
+
+.dark-mode .card.completed {
+    background-color: rgb(15, 95, 15);
+    color: white;
+}
+
+.dark-mode .card.in-progress {
+    background-color: #55523c;
+    color: white;
+}
+
+.dark-mode .card.pending {
+    background-color: #5c1068;
+    color: white;
+}
+
+/* Стили для кнопки удаления */
+.delete-button {
+    background-color: var(--delete-button-bg); /* Красный цвет для удаленной задачи */
+    color: var(--button-text-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 30%;
+}
+
+/* Hover-эффект для кнопки "Удалить" */
+.delete-button:hover {
+    background-color: var(--delete-button-hover-bg); /* Темный оттенок для кнопки удалить */
+}
+
+/* Стили для маркера задачи */
+.checkbox {
+    cursor: pointer;
+}
+
+/* Стили для контейнера карточек */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-top: 10px; /* Уменьшил расстояние между таблицей и карточками */
+}
+
+th {
+    background-color: var(--table-header-bg); /* Цвет фона заголовков */
+    color: var(--button-text-color); /* Цвет текста заголовков */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Стили для строк и ячеек таблицы */
+tr:nth-child(even) {
+    background-color: var(--even-row-bg); /* Цвет фона для четных строк */
+}
+
+tr:nth-child(odd) {
+    background-color: var(--odd-row-bg); /* Цвет фона для нечетных строк */
+}
+
+td {
+     /* Уменьшил внутренние отступы ячеек таблицы */
+    text-align: center; /* Выровненный текст по центру */
+}
+
+header {
+    background: #2340cf;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode header {
+    background: #333;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+td ul{
+    margin: 2%;
+    padding: 0;
+}
+img {
+    width: 75%;
+}
+
+nav .nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    margin: 0 15px;
+}
+
+ul.nav {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+ul.nav li {
+    padding: 0px;
+}
+
+ul.nav li.active {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+ul.nav li a {
+    color: white;
+    text-decoration: none;
+}
+
+.burger-menu {
+    display: none; /* Скрыто по умолчанию, показано на мобильных */
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto; /* Сдвигаем бургер-меню к правому краю */
+    margin-right: 40px;
+}
+
+.burger-menu div {
+    height: 3px;
+    width: 25px;
+    background: white;
+    margin: 2px 0;
+}
+
+.burger-menu.line {
+    color: red;
+}
+
+dialog {
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.sidebar {
+    position: fixed;
+    left: -250px; /* Скрываем сайдбар вне экрана */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #1613bf;
+    color: white;
+    transition: left 0.3s ease; /* Плавная анимация перемещения */
+    z-index: 1000; /* Поверх основного контента */
+}
+
+/* Когда сайдбар активен, показываем его */
+.sidebar.active {
+    left: 0; /* Показываем сайдбар */
+}
+
+.dark-mode .sidebar {
+    background-color: #1613bf;
+}
+
+/* Анимации */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+header .logo {
+    display: inline-block;
+    padding: 15px;
+    font-size: 1.5em;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .nav {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    margin: 0 15px;
+}
+
+ul.nav {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+ul.nav li {
+    padding: 15px;
+}
+
+ul.nav li.active {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+ul.nav li a {
+    color: white;
+    text-decoration: none;
+}
+
+.burger-menu {
+    display: none; /* Скрыто по умолчанию, показано на мобильных */
+    flex-direction: column;
+    cursor: pointer;
+    margin-left: auto; /* Сдвигаем бургер-меню к правому краю */
+    margin-right: 40px;
+}
+
+.burger-menu .line {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+
+.burger-menu.active .line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.burger-menu.active .line:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active .line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.dialog {
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.sidebar {
+    position: fixed;
+    left: -250px; /* Скрываем сайдбар вне экрана */
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #1613bf;
+    color: white;
+    transition: left 0.3s ease; /* Плавная анимация перемещения */
+    z-index: 1000; /* Поверх основного контента */
+}
+
+.sidebar {
+    width: 200px;  
+    background-color: #8685c7;  
+    padding: 20px;  
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);  
+}
+
+.sidebar ul {
+    list-style-type: none;  /* Убираем маркеры списка */
+    padding: 0;  /* Убираем отступы */
+}
+
+.sidebar li {
+    margin: 10px 0;  /* Отступы между элементами списка */
+}
+
+.sidebar li a {
+    text-decoration: none;  /* Убираем подчеркивание у ссылок */
+    color: white;  /* Цвет текста ссылок */
+    display: block;  /* Делаем ссылки блочными, чтобы заполнить всю ширину li */
+    padding: 10px;  /* Внутренние отступы для ссылок */
+    border-radius: 4px;  /* Закругленные углы */
+    transition: background-color 0.3s;  /* Плавный переход фона при наведении */
+}
+
+.sidebar li a:hover {
+    background-color: purple;  
+}
+
+.sidebar li.active {
+    font-weight: bold;  
+    color: #ffcc00; 
+}
+
+.sidebar.active {
+    left: 0; 
+}
+
+/* Анимации */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+    ul.nav li {
+        display: none; /* Скрываем навигационное меню по умолчанию */
+    }
+
+    .burger-menu {
+        display: flex; /* Показываем бургер-меню на мобильных устройствах */
+        flex-direction: column;
+    }
+
+    main {
+        padding: 10px; 
+    }
+
+    .task-card {
+        width: calc(40%); /* 2 карточки на планшетах */
+    }
+    td ul{
+        margin: 2%;
+        padding: 0;
+    }
+
+    .container {
+        margin-top: 20%;
+    }
+
+    h1 {
+        margin-top: 100px;
+    }
+
+    p {
+        text-align: center;
+    }
+}
+
+@media (min-width: 769px) {
+    .burger-menu {
+        display: none; 
+    }
+}
+
+.sidebar li {
+    color: white;
+}
+
+img {
+    width: 75%;
+    float: left;
+}
+
+p {
+    color: black;
+}
+
+.dark-mode p {
+    color: white;
+}
+
+h2 {
+    color: black;
+}
+
+.dark-mode h2 {
+    color: white;
+}
+
+.dark-mode ul li {
+    color: white;
+}
+
+dialog {
+    border: none;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* Затемненный фон */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Дополнительные стили для адаптивности */
+    table {
+        width: 90%;
+        overflow-x: auto;
+    }
+
+    /* Стили для карточек задач */
+    .card {
+        width: 90%; /* Ширина карточек на мобильных */
+    }
+    td ul{
+        margin: 2%;
+        padding: 0;
+    }
+    .delete-button{
+        width: 50%;
+    }
+}
+td ul p{
+    width: 50%;
+}
+
+.fotomain{
+  margin-left: 25px;
+  margin-top: 200px; 
+  flex-shrink: 0; /* Не позволяет изображению сжиматься */
+  max-width: 40%;
+}
+
+.fotomain img {
+
+  
+}
+
+.men {
+  text-align: left;
+}
+
+.head {
+  flex: 1; 
+  margin-right: 20px; 
+  max-width: 50%;
+}
